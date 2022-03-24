@@ -1,0 +1,44 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // let renderTable = (data) => {
+
+
+        // }
+        let fetchData = async () => {
+            let response = await fetch('/category', {
+                method: 'GET',
+                headers: {
+                    "content-Type": "application/json"
+                }
+
+            })
+            console.log(response)
+            //call API 
+            return await response.text() // convert to JSON
+            // return data
+        }
+        let init = async () => {
+
+            let data = await fetchData()
+            console.log(data)
+        }
+
+
+        init()
+
+
+
+    </script>
+</body>
+
+</html>
