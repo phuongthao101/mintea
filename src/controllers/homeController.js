@@ -1,11 +1,5 @@
-
-import pool from '../configs/connectDB.js'
-
 let homePage = async (req, res) => {
-
-    res.render('home.ejs')
-
-
+    res.render('pages/home')
 }
 
 export default {

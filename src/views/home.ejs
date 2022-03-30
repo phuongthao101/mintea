@@ -71,6 +71,7 @@
         Create category
     </button>
     <!-- Button trigger modal -->
+    <!-- Create modal -->
     <div class="modal fade" id="category-create" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -93,6 +94,8 @@
         </div>
     </div>
 
+
+    <!-- view modal -->
     <div class="modal fade" id="category-view" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -111,6 +114,7 @@
         </div>
     </div>
 
+    <!-- edit modal -->
     <div class="modal fade" id="category-edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -120,7 +124,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <button type="button"  onclick="OnEditSubmit" >
+                    <button type="button" onclick="OnEditSubmit">
                         Save changes
                     </button>
                 </div>
@@ -130,7 +134,7 @@
             </div>
         </div>
     </div>
-
+    <!-- Delete modal -->
     <div class="modal fade" id="category-delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -149,12 +153,12 @@
 
     <script>
         let Delete = (id) => {
-            let response = fetch('api/category/'+ id, {
-                method : 'DELETE',
-                headers: {'content-type': 'application/json'}
+            let response = fetch('api/category/' + id, {
+                method: 'DELETE',
+                headers: { 'content-type': 'application/json' }
             })
-           init()
-       
+            init()
+
         }
 
 
@@ -179,9 +183,9 @@
             $('#category-view-content').html(content)
             $('#category-view').modal('show')
         }
-      
-      
-        let Edit= async(id) => {
+
+
+        let Edit = async (id) => {
             let Category = await CategoryById(id)
 
             renderEdit(Category)
@@ -189,9 +193,9 @@
 
         }
 
-        let CategoryById = async(id) => {
-           
-            let response = await fetch('/api/category/'+ id, {
+        let CategoryById = async (id) => {
+
+            let response = await fetch('/api/category/' + id, {
                 method: 'GET',
                 headers: { 'content-type': 'application/json' },
 

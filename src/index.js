@@ -4,6 +4,7 @@ import initWebRoute from './routes/webRoute.js'
 const app = express()
 const port = 3030
 
+app.use(express.static('./src/public'))
 configViewEngine(app)
 
 
@@ -12,7 +13,7 @@ app.use(express.urlencoded({ extended: true }))
 
 initWebRoute(app)
 
-app.listen(port, (req,res) =>{
-    console.log('listening on port '+port)
+app.listen(port, (req, res) => {
+    console.log('listening on port ' + port)
 })
 
