@@ -1,50 +1,78 @@
 <%- include('../template/head')-%>
 
-    <body>
-        <table>
-            <tr>
-                <th>Name</th>
-                <th>Create Date</th>
-                <th>Update Date</th>
-                <th>Actions</th>
-            </tr>
-            <% for(let i=0; i < data.length; i++) { %>
-                <tr data-row-key="<%= data[i].category_id %>">
-                    <td>
-                        <%= data[i].category_name %>
-                    </td>
-                    <td>
-                        <%= data[i].create_at %>
-                    </td>
-                    <td>
-                        <%= data[i].update_at %>
-                    </td>
-                    <!-- <td><a href="/api/category/<%= data[i].category_id%> ">Details</a></td> -->
-                    <td>
-                        <button onclick="category.onView(this.parentElement.parentElement)">Detail</button>
-                        <!-- <button onclick="onEdit(this.parentElement.parentElement)">Edit</button>
-                        <button onclick="onDelete(this.parentElement.parentElement)">Delete</button> -->
+    <input type="text" id="category-search" name="q" placeholder="Search...">
+    <button onclick="onSearch()">Search</button>
 
-                    </td>
+
+    <body>
+        <table id='category-table'>
+            <thead>
+                <tr>
+                    <th>Category Name</th>
+                    <th>Create Date</th>
+                    <th>Update Date</th>
+                    <th>Actions</th>
                 </tr>
-                <% } %>
+            </thead>
         </table>
 
-        <!-- <script>
-            console.log('render')
-            let onView = (target) => {
-                console.log(target)
-                let id = target.getAttribute("data-row-key")
+        <!-- modal update  -->
 
-            }
-            let onEdit = (target) => {
+        <div id="editCategory" hidden="true" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title">Update Category</h2>
+                        <div id="edit-category-content">
 
-            }
+                        </div>
+                    </div>
 
-            let onDelete = (target) => {
-                let id = target.getAttribute("data-row-key")
 
-            }
-        </script> -->
+                </div>
+            </div>
+        </div>
+        <!-- modal view  -->
+        <div id="viewCategory" hidden="true" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title">View Category</h2>
+                        <div id="view-category-content">
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+        <!-- modal create  -->
+        <button class="create-btn" onclick="onCreate(this)">Create Category</button>
+        <div id="createCategory" hidden="true" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title">Create a new Category</h2>
+                        <div id="create-category-content">
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <script>
+
+            init(1).then(() => {
+                renderPage()
+                handleViewBtn()
+                handleEditBtn()
+                handleDeleteBtn()
+
+            })
+        </script>
     </body>
     <%- include('../template/footer')-%>

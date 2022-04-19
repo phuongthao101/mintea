@@ -1,0 +1,93 @@
+<%- include('../template/head')-%>
+
+    <input type="text" id="product-search" name="q" placeholder="Search...">
+    <button onclick="onProductSearch()">Search</button>
+
+    <table id='product-table'>
+        <thead>
+            <tr>
+                <th>Category Name</th>
+                <th>Product Name</th>
+                <th>Desciption</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+    </table>
+
+
+
+    <button class="create-btn" id="create-btn" onclick="onCreateProduct()">Create New Product</button>
+    <div id="create-content" hidden="true">
+
+    </div>
+
+    <script>
+        // onSelect()
+        initProduct(1).then((ok) => {
+            renderProductPage()
+            handleProductViewBtn()
+            handleProductUpdateBtn()
+            handleProductDeleteBtn()
+            // onSelect()
+        })
+
+    </script>
+
+
+    <!-- modal view detail -->
+
+
+    <div id="modal-detail" hidden="true" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">View product</h2>
+
+                </div>
+                <div id="view-content">
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- modal update  -->
+
+    <div id="modal-update" hidden="true" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">Update product</h2>
+                    <div id="update-content">
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <!-- modal create  -->
+    <div id="modal-create" hidden="true" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">Create product</h2>
+                    <div id="content">
+
+                    </div>
+                    <div id="select-id">
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+    <%- include('../template/footer')-%>

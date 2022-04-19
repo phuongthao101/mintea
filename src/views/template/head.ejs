@@ -6,8 +6,147 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mintea</title>
     <link rel="stylesheet" href="/css/index.css">
-    <link type="modal" href="/js/index.js">
+    <script type="text/javascript" src="/js/category.js"></script>
+    <script type="text/javascript" src="/js/product.js"></script>
+    <script type="text/javascript" src="/js/pagination.js"></script>
+    <script type="text/javascript" src="/js/paginationProduct.js"></script>
+    <script type="text/javascript" src="/js/authentication.js"></script>
+
+
+    <style>
+        .login-form {
+            width: 300px;
+            margin: 0 auto;
+            font-family: Tahoma, Geneva, sans-serif;
+        }
+
+        .login-form h1 {
+            text-align: center;
+            color: #4d4d4d;
+            font-size: 24px;
+            padding: 20px 0 20px 0;
+        }
+
+        .login-form input[type="password"],
+        .login-form input[type="text"] {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #dddddd;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+
+        .login-form button[type="submit"] {
+            width: 100%;
+            padding: 15px;
+            background-color: rgb(0, 140, 255);
+            border: 0;
+            box-sizing: border-box;
+            cursor: pointer;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        .register-form {
+            width: 300px;
+            margin: 0 auto;
+            font-family: Tahoma, Geneva, sans-serif;
+        }
+
+        .register-form h1 {
+            text-align: center;
+            color: #4d4d4d;
+            font-size: 24px;
+            padding: 20px 0 20px 0;
+        }
+
+        .register-form input[type="password"],
+        .register-form input[type="text"] {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #dddddd;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+
+        .register-form button[type="submit"] {
+            width: 100%;
+            padding: 15px;
+            background-color: rgb(0, 140, 255);
+            border: 0;
+            box-sizing: border-box;
+            cursor: pointer;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        .disabled {
+            color: lightblue
+        }
+
+        li.active {
+            background-color: gray;
+            color: white;
+        }
+
+        input {
+            margin: 10px;
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0px;
+            overflow: hidden;
+
+        }
+
+        li {
+            float: left;
+        }
+
+        li a {
+            display: block;
+            color: white;
+            font-size: 20px;
+            text-align: center;
+            padding: 10px 20px;
+            text-decoration: none;
+            background-color: #04AA6D;
+        }
+
+
+
+        li a:hover {
+            background-color: grey;
+            color: white;
+        }
+
+        .create-btn {
+            color: blue;
+            padding: 10px;
+            text-align: center;
+
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 </head>
+
+<body>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="category">Category list</a></li>
+        <li><a href="product">Product List</a></li>
+        <li><a href="login">Login</a></li>
+        <li><a href="register">Register</a></li>
+
+
+    </ul>
+
+</body>
 
 </html>

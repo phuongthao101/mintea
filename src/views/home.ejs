@@ -134,6 +134,7 @@
             </div>
         </div>
     </div>
+
     <!-- Delete modal -->
     <div class="modal fade" id="category-delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
@@ -210,7 +211,7 @@
             content += '<input value= "' + data.category_id + ' " hidden id = "category_edit_id" />'
             content += '</div>'
             $("#category-edit-content").html(content);
-            console.log(data)
+
         }
 
 
@@ -229,7 +230,7 @@
             })
 
             if (response.status == 200) {
-                console.log(response)
+
                 alert('Success')
                 $('#category-create').modal('hide')
                 init()
