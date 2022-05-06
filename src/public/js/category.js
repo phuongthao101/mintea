@@ -17,12 +17,15 @@ const renderTable = (tCount, data) => {
             let row = document.createElement('tr')
             row.setAttribute('data-row-key', data[i].category_id)
             //name, create_at , update_at
-            let name = document.createElement('td')
-            name.innerText = data[i].category_name
-            let createAt = document.createElement('td')
-            createAt.innerText = data[i].create_at
-            let updateAt = document.createElement('td')
-            updateAt.innerText = data[i].update_at
+
+            let a = document.createElement('a')
+            a.className = 'category-product'
+            a.innerHTML = data[i].category_name
+
+
+            let td = document.createElement('td')
+            td.className = 'category-product-view'
+            td.appendChild(a)
 
             let action = document.createElement('td')
             let detailBtn = document.createElement('button')
@@ -42,9 +45,9 @@ const renderTable = (tCount, data) => {
             action.appendChild(deleteBtn)
 
 
-            row.appendChild(name)
-            row.appendChild(createAt)
-            row.appendChild(updateAt)
+            row.appendChild(td)
+            // row.appendChild(createAt)
+            // row.appendChild(updateAt)
             row.appendChild(action)
             tblBody.appendChild(row);
 
@@ -78,6 +81,7 @@ const handleEditBtn = () => {
     editBtns.forEach(btn => {
         btn.addEventListener('click', async (e) => {
             await onEdit(e.target)
+            console.log(e.target.parentElement.parentElement)
         })
     })
 
@@ -123,6 +127,8 @@ const onView = async (target) => {
     viewCategory.hidden = false
 
 }
+
+
 const onCreate = (createCategoryBtn) => {
 
     createCategoryBtn.hidden = true
@@ -261,6 +267,34 @@ const init = async (page) => {
     return renderTable(res.totalCount, res.data)
 
 }
+const categoryList = async () => {
+
+    let query = '?page=' + 1 + '&perpage=' + 100
+    let content = document.getElementById('category-list')
+    let ul = document.createElement('ul')
+    let response = await fetch('api/categories' + query, {
+        method: 'GET',
+        headers: { 'content-type': 'application/json' }
+    })
+    let res = await response.json()
+    let dataCategory = res.data
+
+    for (let i = 0; i < dataCategory.length; i++) {
+        let li = document.createElement('li')
+        ul.appendChild(li)
+        let alink = document.createElement('a')
+        li.appendChild(alink)
+
+        alink.innerText = dataCategory[i].category_name;
+        alink.className = 'category-list'
+        alink.href = '/category/product/' + dataCategory[i].category_id
+
+    }
+
+    content.appendChild(ul)
+
+}
+
 
 
 

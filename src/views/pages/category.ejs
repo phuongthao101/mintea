@@ -5,12 +5,17 @@
 
 
     <body>
+        <div>
+            <p>Hello user <%=locals.user%>
+            </p>
+            <%=locals.isAuthen%>
+        </div>
         <table id='category-table'>
             <thead>
                 <tr>
                     <th>Category Name</th>
-                    <th>Create Date</th>
-                    <th>Update Date</th>
+                    <!-- <th>Create Date</th>
+                    <th>Update Date</th> -->
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -71,6 +76,8 @@
                 handleViewBtn()
                 handleEditBtn()
                 handleDeleteBtn()
+                handleLinkA()
+
 
             })
         </script>

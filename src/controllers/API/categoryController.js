@@ -11,6 +11,9 @@ let getTotalCount = async (queryCategoryName) => {
 
 }
 let getCategory = async (req, res) => {
+    let session = req.session
+    // console.log(session.user)
+
     //get query from request
     let { page, perpage, category_name } = req.query
     if (!page) {
@@ -40,8 +43,9 @@ let getCategory = async (req, res) => {
         data: rows,
         totalCount: totalCount
     }
+
     //return client
-    res.json(result)
+    return res.json(result)
 }
 
 let viewCategory = async (req, res) => {
@@ -75,6 +79,7 @@ let deleteCategory = async (req, res) => {
     await pool.execute('DELETE FROM categories WHERE category_id =?', [id])
     res.status(200).json()
 }
+
 let validateCategoryName = (categoryName) => {
 
     if (categoryName.length >= 5) {

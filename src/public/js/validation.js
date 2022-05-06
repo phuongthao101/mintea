@@ -1,0 +1,3 @@
+// const email = ()=>{
+//     let regex =
+// }

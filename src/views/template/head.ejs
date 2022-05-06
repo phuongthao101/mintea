@@ -11,6 +11,7 @@
     <script type="text/javascript" src="/js/pagination.js"></script>
     <script type="text/javascript" src="/js/paginationProduct.js"></script>
     <script type="text/javascript" src="/js/authentication.js"></script>
+    <script type="text/javascript" src="/js/validation.js"></script>
 
 
     <style>
@@ -61,7 +62,17 @@
         }
 
         .register-form input[type="password"],
+        .register-form input[type="email"],
+        .register-form input[type="number"],
         .register-form input[type="text"] {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #dddddd;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+
+        .register-form select[type="text"] {
             width: 100%;
             padding: 15px;
             border: 1px solid #dddddd;
@@ -78,6 +89,14 @@
             cursor: pointer;
             font-weight: bold;
             color: #ffffff;
+        }
+
+        .select {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #dddddd;
+            margin-bottom: 15px;
+            box-sizing: border-box;
         }
 
         .disabled {
@@ -103,6 +122,16 @@
 
         li {
             float: left;
+        }
+
+        .category-list li a {
+            display: block;
+            color: white;
+            font-size: 20px;
+            text-align: center;
+            padding: 10px 20px;
+            text-decoration: none;
+
         }
 
         li a {
@@ -137,16 +166,43 @@
 </head>
 
 <body>
-    <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="category">Category list</a></li>
-        <li><a href="product">Product List</a></li>
-        <li><a href="login">Login</a></li>
-        <li><a href="register">Register</a></li>
-
-
+    <ul id="header">
     </ul>
-
 </body>
+<script>
+    const getCookie = (name) => {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+    }
+
+    let renderHeader = () => {
+
+        // Get cookies instead of localStorage
+        const isSigned = getCookie('isSigned')
+        const userName = getCookie('userName')
+
+        const header = document.getElementById('header');
+
+        if (userName) {
+            header.innerHTML = `<p>userName</p>`
+        }
+        if (isSigned) {
+
+            header.innerHTML = `
+            <li><a href="/">Home</a></li>
+            <li><a href="category">Category list</a></li>
+            <li><a href="product">Product List</a></li>
+            <li><a onClick="logout()">Logout</a></li>
+        `
+        } else {
+            header.innerHTML = `
+                <li><a href="login">Login</a></li>
+                <li><a href="register">Register</a></li>
+            `
+        }
+    }
+    renderHeader()
+</script>
 
 </html>

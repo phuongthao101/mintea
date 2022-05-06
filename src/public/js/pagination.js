@@ -107,3 +107,23 @@ let removeActive = () => {
     })
 
 }
+
+
+
+
+// let page = 1
+// let perpage = 2
+// let totalCount = 0
+
+// const handlePage = () => {
+
+// }
+// const renderPage = () => {
+// let totalPage = Math.ceil(totalCount / perpage)
+// let a = doc
+// for(let i=0; i<totalCount.length; i++){
+    
+// }
+// }
+
+

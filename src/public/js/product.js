@@ -34,18 +34,22 @@ const renderProductTable = (count, data) => {
             let detailBtn = document.createElement('button')
             let updateBtn = document.createElement('button')
             let deleteBtn = document.createElement('button')
+            let addBtn = document.createElement('button')
 
             detailBtn.innerText = 'Detail'
             updateBtn.innerText = 'Update'
             deleteBtn.innerText = 'Delete'
+            addBtn.innerText = 'Add to cart'
 
             detailBtn.className = 'view-btns'
             updateBtn.className = 'update-btns'
             deleteBtn.className = 'delete-btns'
+            addBtn.className = 'add-btns'
 
             actions.appendChild(detailBtn)
             actions.appendChild(updateBtn)
             actions.appendChild(deleteBtn)
+            actions.appendChild(addBtn)
 
             row.appendChild(productName)
             row.appendChild(categoryName)
@@ -60,6 +64,45 @@ const renderProductTable = (count, data) => {
         table.setAttribute("border", "2");
         resolve()
     })
+}
+
+const handleAddBtn = () => {
+    let addBtns = document.querySelectorAll('.add-btns')
+    addBtns.forEach((button) => {
+        button.onclick = async (e) => {
+            await onAddtoCart(e.target)
+        }
+    })
+}
+
+
+const onAddtoCart = async (target) => {
+
+    let id = target.parentElement.parentElement.getAttribute('data-row-key')
+    console.log(id)
+    let reponse = await fetch('api/product/' + id, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+    })
+    let product = await reponse.json()
+    console.log(id, product)
+
+    if (!localStorage.getItem('carts')) {
+        localStorage.setItem('carts', '[]')
+    }
+    let carts = JSON.parse(localStorage.getItem('carts'))
+    for (let i = 0; i < carts.length; i++) {
+        if (carts[i].product_id == id) {
+            carts[i].quantity += 1
+            localStorage.removeItem('carts')
+            localStorage.setItem('carts', carts)
+            break
+        }
+    }
+    carts.push(product)
+}
+const showCart = (data) => {
+
 }
 
 const initProduct = async () => {
@@ -325,6 +368,55 @@ const onDeleteProduct = async (target) => {
     if (response.status == 200) {
         location.reload()
     }
+}
+let productDetails = async () => {
+    let id = window.location.pathname.split('/')[3]
+    let response = await fetch('/api/category/product/' + id, { // new url 
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+    })
+    let data = await response.json()
+    showProductDetail(data)
+}
+const showProductDetail = (data) => {
+    return new Promise((resolve, reject) => {
+        let table = document.getElementById('product-table')
+        let tbody = document.createElement('tbody')
+
+        if (!tbody) {
+            tbody = document.createElement('tbody')
+        } else {
+            tbody.innerHTML = ''
+        }
+        for (let i = 0; i < data.length; i++) {
+            let tr = document.createElement('tr')
+            let productName = document.createElement('td')
+            productName.innerText = data[i].product_name
+
+            let description = document.createElement('td')
+            description.innerText = data[i].description
+
+            let price = document.createElement('td')
+            price.innerText = data[i].price
+
+            let actions = document.createElement('td')
+            actions.innerText = 'Action'
+            let addBtns = document.createElement('button')
+            addBtns.innerText = 'Add to cart'
+
+            actions.appendChild(addBtns)
+            tr.appendChild(productName)
+            tr.appendChild(description)
+            tr.appendChild(price)
+
+            tbody.appendChild(tr)
+        }
+
+        table.appendChild(tbody)
+        table.setAttribute("border", "2");
+        resolve()
+    })
+
 }
 
 

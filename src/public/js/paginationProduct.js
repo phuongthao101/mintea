@@ -1,4 +1,16 @@
+let handleProductPage = (number, target) => {
+    if (page === number) {
+        return
+    }
+    page = number
+    initProduct(page).then((ok) => {
 
+        handleProductViewBtn()
+        handleProductUpdateBtn()
+        handleProductDeleteBtn()
+
+    })
+}
 let renderProductPage = () => {
 
     totalProductPage = Math.ceil(totalCount / perpage)
@@ -17,26 +29,6 @@ let renderProductPage = () => {
     }
     a.innerHTML += '<li class="pageNext" onclick="onNextPage(this)">' + 'Next' + '</li>'
 
-}
-let handleProductPage = (number, target) => {
-    if (page === number) {
-        return
-    }
-    page = number
-    initProduct(page).then((ok) => {
-
-        handleProductViewBtn()
-        handleProductUpdateBtn()
-        handleProductDeleteBtn()
-
-    })
-}
-
-const removeProductActive = () => {
-    let active = document.querySelectorAll('.pagination-product li')
-    active.forEach((btn) => {
-        btn.classList.remove('active')
-    })
 }
 const onNextPage = (target) => {
     totalPage = Math.ceil(totalCount / perpage)
@@ -84,5 +76,11 @@ const onPreviousPage = (target) => {
         handleViewBtn()
         handleEditBtn()
         handleDeleteBtn()
+    })
+}
+const removeProductActive = () => {
+    let active = document.querySelectorAll('.pagination-product li')
+    active.forEach((btn) => {
+        btn.classList.remove('active')
     })
 }

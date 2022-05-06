@@ -1,6 +1,20 @@
 <%- include('../template/head')-%>
 
     <body>
+        hello user <p id="username"> </p>
+        <p>Category List</p>
+        <div id="category-list">
+
+        </div>
+        <!-- <div id="container"></div> -->
 
     </body>
+    <script>
+        let username = getCookie('userName')
+        document.getElementById('username').innerText = username
+        categoryList()
+        // get user name from cookie
+
+
+    </script>
     <%- include('../template/footer')-%>

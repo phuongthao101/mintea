@@ -1,12 +1,12 @@
 
-import pool from '../configs/connectDB.js'
-
 let categoryPage = async (req, res) => {
 
     res.render('pages/category')
 }
-
+let productByCategoryPage = async (req, res) => {
+    res.render('pages/productByCategory')
+}
 
 export default {
-    categoryPage
+    categoryPage, productByCategoryPage
 }

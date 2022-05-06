@@ -12,6 +12,7 @@ let getTotalCount = async (queryProductName) => {
 
 
 let viewProduct = async (req, res) => {
+
     let id = req.params.id
     const sql = `
         SELECT
@@ -29,7 +30,15 @@ let viewProduct = async (req, res) => {
     res.json(rows[0])
 
 }
+let getProductByCategory = async (req, res) => {
+    let id = req.params.id
+    const sql = `SELECT product_name, description, price, quantity
+    FROM products 
+    WHERE category_id =?`
+    let [rows, fields] = await pool.execute(sql, [id])
+    res.json(rows)
 
+}
 let getProducts = async (req, res) => {
     //get query from request
     let { page, perpage, product_name } = req.query
@@ -98,5 +107,5 @@ let deleteProduct = async (req, res) => {
     res.status(200).json()
 }
 export default {
-    viewProduct, getProducts, editProduct, createProduct, deleteProduct
+    viewProduct, getProducts, editProduct, createProduct, deleteProduct, getProductByCategory
 }
